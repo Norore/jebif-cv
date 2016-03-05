@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from candidate.views import collection, entry, edit, new, toggle_valid, search
+from cv.candidate.views import collection, entry, edit, new, toggle_valid, search
 
 urlpatterns = patterns('',
     url(r'(?P<cv_id>\d+)/edit/$', 
