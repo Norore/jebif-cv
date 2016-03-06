@@ -3,7 +3,7 @@
 from django import forms
 from django.conf import settings
 
-from candidate.models import CV, JobType
+from cv.candidate.models import CV, JobType
 from utils import DateField
 
 class CVForm(forms.ModelForm):

@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from signals import create_profile_for_user
-from candidate.models import CV
+from cv.candidate.models import CV
 
 # After a user (new or existing) is saved, if he has not a related profile,
 # this signal will create one.

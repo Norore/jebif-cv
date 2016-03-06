@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from users.views import collection, entry, edit, new, delete, change_password
+from cv.users.views import collection, entry, edit, new, delete, change_password
 
 urlpatterns = patterns('',
     url(r'(?P<user_id>\d+)/edit/$', 

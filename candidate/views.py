@@ -5,8 +5,8 @@ from django.views.generic.simple import direct_to_template
 from django.shortcuts import get_object_or_404, redirect
 
 from jebif_cv.constants import INFO_MSG, SUCCESS_MSG, ERROR_MSG
-from candidate.models import CV
-from candidate.forms import CVForm, SearchForm
+from cv.candidate.models import CV
+from cv.candidate.forms import CVForm, SearchForm
 
 #
 # Public views (called from urls)
