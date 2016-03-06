@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm
 
 from jebif_cv.constants import INFO_MSG, SUCCESS_MSG, ERROR_MSG
-from users.forms import UserForm
+from cv.users.forms import UserForm
 
 #
 # Public views (called from urls)

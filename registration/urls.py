@@ -11,7 +11,7 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.views import login, logout, logout_then_login
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from registration.views import send_password
+from cv.registration.views import send_password
 
 ROOT_URL = "%scv/" % settings.ROOT_URL
 
