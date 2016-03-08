@@ -1,6 +1,5 @@
 # -*- encoding: utf8 -*-
-from django.views.generic.simple import direct_to_template
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm
@@ -28,13 +27,13 @@ def entry(request, user_id):
         return _delete(request, user)
 
 def new(request):
-    return direct_to_template(request, "users/new.html", {
+    return render(request, "users/new.html", {
         'form': UserCreationForm()
     })
 
 def edit(request, user_id):
     user = get_object_or_404(User, id = user_id)
-    return direct_to_template(request, "users/edit.html", {
+    return render(request, "users/edit.html", {
         'form': UserForm(instance = user),
         'user_edit': user
     })
@@ -75,7 +74,7 @@ de passe pour que nous puissions vérifier que vous l'avez entrer correctement"
             message = ERROR_MSG % 'Le formulaire est invalide, veuillez corriger les erreurs suivantes.'
             request.user.message_set.create( message = message )
     
-    return direct_to_template(request, 'users/change_password.html', {
+    return render(request, 'users/change_password.html', {
         'user_edit': user,
         'password_form': form
     })
@@ -85,12 +84,12 @@ de passe pour que nous puissions vérifier que vous l'avez entrer correctement"
 #
 
 def _index(request):
-    return direct_to_template(request, "users/index.html", {
+    return render(request, "users/index.html", {
         'users': User.objects.all()
     })
 
 def _show(request, user):
-    return direct_to_template(request, "users/show.html", {
+    return render(request, "users/show.html", {
         'user': user
     })
 
@@ -104,7 +103,7 @@ def _create(request):
     else:
         message = ERROR_MSG % 'Le formulaire est invalide, veuillez corriger les erreurs suivantes.'
         request.user.message_set.create( message = message )
-        return direct_to_template(request, "users/new.html", {
+        return render(request, "users/new.html", {
             'form': form
         })
     
@@ -136,7 +135,7 @@ def _update(request, user):
     else:
         message = ERROR_MSG % 'Le formulaire est invalide, veuillez corriger les erreurs suivantes.'
         request.user.message_set.create( message = message )
-        return direct_to_template(request, "users/edit.html", {
+        return render(request, "users/edit.html", {
             'user': user,
             'form': form
         })

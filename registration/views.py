@@ -68,7 +68,7 @@ def register(request, success_url='/accounts/register/complete/'):
                               { 'form': form },
                               context_instance=RequestContext(request))
 
-def send_password(request):
+def send_password(request, uid36, token):
     if request.method == 'POST':
         if request.POST:
             try:

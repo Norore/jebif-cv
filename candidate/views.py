@@ -1,8 +1,7 @@
 # -*- encoding: utf8 -*-
 
 from django.db.models import Q
-from django.views.generic.simple import direct_to_template
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from jebif_cv.constants import INFO_MSG, SUCCESS_MSG, ERROR_MSG
 from cv.candidate.models import CV
@@ -34,13 +33,11 @@ def entry(request, cv_id):
         return _delete(request, cv)
 
 def new(request):
-    return direct_to_template(request, "cv/new.html", {
-        'form': CVForm()
-    })
+    return render(request, "cv/new.html", {"form": CVForm()})
 
 def edit(request, cv_id):
     cv = get_object_or_404(CV, id = cv_id)
-    return direct_to_template(request, "cv/edit.html", {
+    return render(request, "cv/edit.html", {
         'form': CVForm(instance = cv),
         'cv': cv
     })
@@ -100,7 +97,7 @@ def search(request):
                 )
         
     
-    return direct_to_template(request, "cv/index.html", {
+    return render(request, "cv/index.html", {
         'form': form,
         'cv_list': cv_list
     })
@@ -111,13 +108,13 @@ def search(request):
 #
 
 def _index(request):
-    return direct_to_template(request, "cv/index.html", {
+    return render(request, "cv/index.html", {
         'form': SearchForm(),
         'cv_list': CV.objects.filter(is_valid = True)
     })
 
 def _show(request, cv):
-    return direct_to_template(request, "cv/show.html", {
+    return render(request, "cv/show.html", {
         'cv': cv
     })
 
@@ -134,7 +131,7 @@ def _create(request):
     else:
         message = ERROR_MSG%"Le formulaire est invalide, veuillez corriger les erreurs suivantes"
         request.user.message_set.create( message = message )
-        return direct_to_template(request, "cv/new.html", {
+        return render(request, "cv/new.html", {
             'form': form
         })
     
@@ -152,7 +149,7 @@ def _update(request, cv):
     else:
         message = ERROR_MSG%"Le formulaire est invalide, veuillez corriger les erreurs suivantes"
         request.user.message_set.create( message = message )
-        return direct_to_template(request, "cv/edit.html", {
+        return render(request, "cv/edit.html", {
             'cv': cv,
             'form': form
         })
